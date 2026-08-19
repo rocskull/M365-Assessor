@@ -1,0 +1,43 @@
+tenant_id: "00000000-0000-0000-0000-000000000000"
+client_id: "00000000-0000-0000-0000-000000000000"
+client_name: Contoso
+exchange_organization: tenant.onmicrosoft.com
+auth_method: interactive
+auth_scopes:
+  - User.Read
+  - Organization.Read.All
+  - User.Read.All
+  - RoleManagement.Read.Directory
+  - GroupMember.Read.All
+  - Policy.Read.All
+  - GroupSettings.Read.All
+  - Policy.Read.DeviceConfiguration
+  - AuditLog.Read.All
+  - Policy.Read.AuthenticationMethod
+  - Group.Read.All
+  - Device.Read.All
+  - Application.Read.All
+  - DelegatedPermissionGrant.Read.All
+sharepoint_url: null
+output_directory: ./reports # root; each scan creates a client-and-timestamp subfolder
+frameworks:
+  - cis-m365-7.0.0
+  - nist-csf-2.0
+log_level: INFO
+concurrency: 4
+timeout: 30
+retry_count: 4
+cache: false
+database_url: sqlite:///./m365-assessor.db
+powershell_executable: pwsh
+service_collection_enabled: true
+evidence_input: null
+framework_directory: null
+rule_directory: null
+# Credentials are references to environment variables, never secret values.
+client_secret_env: M365_ASSESSOR_CLIENT_SECRET
+certificate_path: null
+certificate_thumbprint: null
+certificate_password_env: M365_ASSESSOR_CERTIFICATE_PASSWORD
+service_certificate_path: null
+service_certificate_password_env: M365_ASSESSOR_SERVICE_CERTIFICATE_PASSWORD

@@ -1,0 +1,123 @@
+defaults:
+  description: This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.
+  category: Teams Security
+  service: Microsoft Teams
+  severity: High
+  rationale: Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.
+  business_impact: Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.
+  recommendation: Review effective policy assignments and test changes with representative collaboration scenarios.
+  references: [https://learn.microsoft.com/microsoftteams/teams-powershell-overview]
+  required_permissions: []
+rules:
+  - check_id: M365-TEAMS-001
+    title: Allow only approved external cloud storage providers
+    remediation: Disable unapproved storage providers in Teams files policies and retain only governed services.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.1.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [teams001]
+    evaluation: {type: collection, field: teams001.files_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: box, expected: false}, {type: equals, field: drop_box, expected: false}, {type: equals, field: google_drive, expected: false}, {type: equals, field: citrix_files, expected: false}, {type: equals, field: egnyte, expected: false}]}
+    evidence_fields: [teams001.files_policies]
+  - check_id: M365-TEAMS-002
+    title: Disable email submission to Teams channels
+    remediation: Disable AllowEmailIntoChannel in each effective Teams channels policy.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.1.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [teams001]
+    evaluation: {type: collection, field: teams001.channels_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_email_into_channel, expected: false}]}
+    evidence_fields: [teams001.channels_policies]
+  - check_id: M365-TEAMS-003
+    title: Restrict external federation domains
+    remediation: Configure an explicit allow list of approved external Teams domains.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.2.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams001]
+    evaluation: {type: truthy, field: teams001.federation_configuration.allowed_domains}
+    evidence_fields: [teams001.federation_configuration.allowed_domains]
+  - check_id: M365-TEAMS-004
+    title: Disable communication with unmanaged Teams users
+    remediation: Disable consumer and public-cloud communication in the tenant federation configuration.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.2.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams001]
+    evaluation: {type: equals, field: teams001.federation_configuration.allow_teams_consumer, expected: false}
+    evidence_fields: [teams001.federation_configuration]
+  - check_id: M365-TEAMS-005
+    title: Prevent external Teams users from initiating conversations
+    remediation: Disable inbound consumer communication in the tenant federation configuration.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.2.3"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams001]
+    evaluation: {type: equals, field: teams001.federation_configuration.allow_teams_consumer_inbound, expected: false}
+    evidence_fields: [teams001.federation_configuration]
+  - check_id: M365-TEAMS-006
+    title: Block communication with trial Teams tenants
+    remediation: Disable public-cloud access or explicitly block unmanaged trial tenant communication.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.2.4"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams001]
+    evaluation: {type: collection, field: teams001.federation_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: enable_public_cloud_access, expected: false}]}
+    evidence_fields: [teams001.federation_policies]
+  - check_id: M365-TEAMS-007
+    title: Prevent anonymous users from joining meetings
+    remediation: Disable anonymous meeting join in every effective meeting policy.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_anonymous_users_to_join_meeting, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-008
+    title: Prevent anonymous and dial-in users from starting meetings
+    remediation: Disable anonymous meeting start in each meeting policy.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_anonymous_users_to_start_meeting, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-009
+    title: Restrict lobby bypass to organizational participants
+    remediation: Configure meeting policies so only trusted organizational participants bypass the lobby.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.3"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: in_ci, field: auto_admitted_users, expected: [EveryoneInCompanyExcludingGuests, InvitedUsers, OrganizerOnly]}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-010
+    title: Prevent dial-in callers from bypassing the lobby
+    remediation: Disable PSTN lobby bypass in each effective meeting policy.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.4"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_pstn_users_to_bypass_lobby, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-011
+    title: Exclude anonymous users from meeting chat
+    remediation: Configure MeetingChatEnabledType to exclude anonymous users.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.5"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: in_ci, field: meeting_chat_enabled_type, expected: [Disabled, EnabledExceptAnonymous]}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-012
+    title: Limit presentation to organizers and co-organizers
+    remediation: Configure the designated presenter role to OrganizerOnly.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.6"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals_ci, field: designated_presenter_role_mode, expected: OrganizerOnly}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-013
+    title: Block external participant control requests
+    remediation: Disable external participant give/request control in meeting policies.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.7"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_external_participant_give_request_control, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-014
+    title: Disable external non-trusted meeting chat
+    remediation: Disable external non-trusted meeting chat in all effective policies.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.8"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_external_non_trusted_meeting_chat, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-015
+    title: Disable meeting recording by default
+    remediation: Disable cloud recording in default and broadly assigned meeting policies.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.5.9"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [teams002]
+    evaluation: {type: collection, field: teams002.meeting_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_cloud_recording, expected: false}]}
+    evidence_fields: [teams002.meeting_policies]
+  - check_id: M365-TEAMS-016
+    title: Allow users to report Teams security concerns
+    remediation: Enable end-user security reporting in effective messaging policies.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "8.6.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: DE.CM}]
+    collector_dependencies: [teams003]
+    evaluation: {type: collection, field: teams003.messaging_policies, quantifier: all, min_count: 1, conditions: [{type: equals, field: allow_security_end_user_reporting, expected: true}]}
+    evidence_fields: [teams003.messaging_policies]

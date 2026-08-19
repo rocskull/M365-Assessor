@@ -1,0 +1,531 @@
+- check_id: M365-ENTRA-001
+  title: Keep privileged user accounts cloud-native
+  description: Privileged Entra role holders should not depend on an on-premises identity source.
+  category: Identity
+  service: Entra ID
+  severity: High
+  rationale: A separate cloud authentication boundary reduces exposure to an on-premises compromise.
+  business_impact: Synced privileged identities can extend an Active Directory compromise into Microsoft 365.
+  remediation: Create dedicated cloud-only administrator identities, transfer role assignments, and protect them with strong Conditional Access.
+  recommendation: Migrate active privileged role holders to dedicated cloud-only accounts.
+  references:
+    - https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "1.1.1"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [User.Read.All, RoleManagement.Read.Directory, GroupMember.Read.All]
+  collector_dependencies: [entra002]
+  evaluation: {type: equals, field: entra002.synced_privileged_user_count, expected: 0}
+  evidence_fields: [entra002.synced_privileged_users]
+
+- check_id: M365-ENTRA-002
+  title: Maintain a resilient number of Global Administrators
+  description: The tenant should have between two and four active Global Administrator users.
+  category: Privileged Access
+  service: Entra ID
+  severity: High
+  rationale: Too few administrators harms recovery, while too many increases the privileged attack surface.
+  business_impact: Poorly balanced Global Administrator coverage can cause lockout or excessive privilege exposure.
+  remediation: Retain two to four dedicated Global Administrators and use lower-privileged roles for routine work.
+  recommendation: Review direct and role-assignable-group Global Administrator membership.
+  references:
+    - https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "1.1.3"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [User.Read.All, RoleManagement.Read.Directory, GroupMember.Read.All]
+  collector_dependencies: [entra002]
+  evaluation: {type: between, field: entra002.global_admin_count, expected: [2, 4]}
+  evidence_fields: [entra002.global_admin_users]
+
+- check_id: M365-ENTRA-003
+  title: Prevent ordinary users from registering applications
+  description: Default users should not be permitted to create application registrations.
+  category: Applications
+  service: Entra ID
+  severity: Medium
+  rationale: Controlled application onboarding reduces unreviewed identities and delegated access paths.
+  business_impact: Unrestricted registrations can introduce shadow applications and consent risk.
+  remediation: Disable application registration for default users and delegate application creation through an approved role or process.
+  recommendation: Set allowedToCreateApps to false in the authorization policy.
+  references:
+    - https://learn.microsoft.com/graph/api/resources/authorizationpolicy
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.2.2"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateApps, expected: false}
+  evidence_fields: [entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateApps]
+
+- check_id: M365-ENTRA-004
+  title: Prevent ordinary users from creating tenants
+  description: Non-administrators should not be able to create new Entra tenants from the organization.
+  category: Identity
+  service: Entra ID
+  severity: Medium
+  rationale: Tenant creation should be governed to avoid unmanaged organizational directories.
+  business_impact: Unmanaged tenants can become shadow-IT environments outside security oversight.
+  remediation: Restrict tenant creation to approved administrators through the Entra authorization policy.
+  recommendation: Set allowedToCreateTenants to false for the default user role.
+  references:
+    - https://learn.microsoft.com/graph/api/authorizationpolicy-get
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.2.3"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: GV.PO}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateTenants, expected: false}
+  evidence_fields: [entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateTenants]
+
+- check_id: M365-ENTRA-005
+  title: Restrict security-group creation to administrators
+  description: Default users should not be allowed to create security groups.
+  category: Groups
+  service: Entra ID
+  severity: Medium
+  rationale: Security groups are authorization primitives and should follow a governed creation process.
+  business_impact: Uncontrolled group creation can lead to inconsistent access assignments and privilege sprawl.
+  remediation: Disable security-group creation in default user role permissions and provide a managed request path.
+  recommendation: Set allowedToCreateSecurityGroups to false.
+  references:
+    - https://learn.microsoft.com/graph/api/resources/authorizationpolicy
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.3.1"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateSecurityGroups, expected: false}
+  evidence_fields: [entra003.authorization_policy.defaultUserRolePermissions.allowedToCreateSecurityGroups]
+
+- check_id: M365-ENTRA-006
+  title: Govern Microsoft 365 group creation
+  description: General users should not be able to create Microsoft 365 groups without an approved scope.
+  category: Groups
+  service: Entra ID
+  severity: Medium
+  rationale: A controlled group lifecycle reduces abandoned workspaces and unmanaged collaboration surfaces.
+  business_impact: Unrestricted creation increases data sprawl, ownership gaps, and external-sharing exposure.
+  remediation: Configure Group.Unified with EnableGroupCreation false and, if needed, specify an approved creator group.
+  recommendation: Limit group creation through the Group.Unified tenant setting.
+  references:
+    - https://learn.microsoft.com/graph/group-directory-settings
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.3.4"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: GV.PO}
+  required_permissions: [GroupSettings.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.m365_group_creation.enabled, expected: false}
+  evidence_fields: [entra003.m365_group_creation]
+
+- check_id: M365-ENTRA-007
+  title: Limit who can join devices to Entra ID
+  description: Device join should be denied by default or scoped to selected identities.
+  category: Devices
+  service: Entra ID
+  severity: High
+  rationale: Restricting device join reduces attacker persistence through unauthorized device identities.
+  business_impact: Broad device join rights can allow unmanaged devices to appear trusted.
+  remediation: Scope Entra join to a managed group or disable user-driven joining where it is unnecessary.
+  recommendation: Replace the all-users join scope with selected identities or no user scope.
+  references:
+    - https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.1"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.DeviceConfiguration]
+  collector_dependencies: [entra004]
+  evaluation: {type: in, field: entra004.join_scope, expected: [selected, none]}
+  evidence_fields: [entra004.policy.azureADJoin]
+
+- check_id: M365-ENTRA-008
+  title: Cap user device registrations at ten
+  description: A user should be limited to no more than ten Entra joined or registered devices.
+  category: Devices
+  service: Entra ID
+  severity: Medium
+  rationale: A bounded quota constrains unauthorized enrollment and reduces stale device identities.
+  business_impact: Excessive quotas can support persistence and complicate device governance.
+  remediation: Set userDeviceQuota to ten or fewer; use Device Enrollment Manager accounts for approved bulk enrollment.
+  recommendation: Configure a device quota of ten or fewer.
+  references:
+    - https://learn.microsoft.com/graph/api/resources/deviceregistrationpolicy
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.2"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.DeviceConfiguration]
+  collector_dependencies: [entra004]
+  evaluation: {type: lte, field: entra004.policy.userDeviceQuota, expected: 10}
+  evidence_fields: [entra004.policy.userDeviceQuota]
+
+- check_id: M365-ENTRA-009
+  title: Do not make Global Administrators local device administrators automatically
+  description: Global Administrator membership should not automatically grant local administrator rights during Entra join.
+  category: Devices
+  service: Entra ID
+  severity: High
+  rationale: Separating cloud administration from endpoint administration limits privilege concentration.
+  business_impact: Automatic local rights increase credential exposure and lateral-movement impact.
+  remediation: Disable enableGlobalAdmins in the Entra join local administrator policy.
+  recommendation: Use dedicated endpoint administration roles instead of Global Administrators.
+  references:
+    - https://learn.microsoft.com/graph/api/resources/deviceregistrationpolicy
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.3"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.DeviceConfiguration]
+  collector_dependencies: [entra004]
+  evaluation: {type: equals, field: entra004.policy.azureADJoin.localAdmins.enableGlobalAdmins, expected: false}
+  evidence_fields: [entra004.policy.azureADJoin.localAdmins]
+
+- check_id: M365-ENTRA-010
+  title: Limit local administrators assigned during device join
+  description: Registering users should not universally receive local administrator rights on joined devices.
+  category: Devices
+  service: Entra ID
+  severity: High
+  rationale: Selected administrative groups provide tighter endpoint privilege control than all registering users.
+  business_impact: Broad local administration increases malware execution and credential theft risk.
+  remediation: Scope registering-user local administration to selected users/groups or disable it.
+  recommendation: Use an enumerated or empty registering-users scope.
+  references:
+    - https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.4"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.DeviceConfiguration]
+  collector_dependencies: [entra004]
+  evaluation: {type: in, field: entra004.local_admin_registration_scope, expected: [selected, none]}
+  evidence_fields: [entra004.policy.azureADJoin.localAdmins.registeringUsers]
+
+- check_id: M365-ENTRA-011
+  title: Enable Entra Local Administrator Password Solution
+  description: The tenant device registration policy should enable Local Administrator Password Solution.
+  category: Devices
+  service: Entra ID
+  severity: High
+  rationale: Unique, rotated local administrator passwords reduce credential reuse across endpoints.
+  business_impact: Shared or unmanaged local passwords enable lateral movement after endpoint compromise.
+  remediation: Enable Microsoft Entra LAPS and deploy the corresponding device policy to supported endpoints.
+  recommendation: Set localAdminPassword.isEnabled to true.
+  references:
+    - https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.5"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.DeviceConfiguration]
+  collector_dependencies: [entra004]
+  evaluation: {type: equals, field: entra004.policy.localAdminPassword.isEnabled, expected: true}
+  evidence_fields: [entra004.policy.localAdminPassword]
+
+- check_id: M365-ENTRA-012
+  title: Restrict users from reading their stored BitLocker keys
+  description: Default users should not be able to retrieve BitLocker recovery keys for owned devices.
+  category: Devices
+  service: Entra ID
+  severity: Medium
+  rationale: Recovery-key access should follow a controlled support and authorization process.
+  business_impact: Compromised user accounts could expose recovery material for organizational devices.
+  remediation: Disable allowedToReadBitlockerKeysForOwnedDevice in default user role permissions.
+  recommendation: Provide key recovery through approved support roles and workflows.
+  references:
+    - https://learn.microsoft.com/graph/api/authorizationpolicy-get
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.4.6"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.authorization_policy.defaultUserRolePermissions.allowedToReadBitlockerKeysForOwnedDevice, expected: false}
+  evidence_fields: [entra003.authorization_policy.defaultUserRolePermissions.allowedToReadBitlockerKeysForOwnedDevice]
+
+- check_id: M365-ENTRA-013
+  title: Block default end-user application consent
+  description: Default user role permissions should not assign self-service permission-grant policies.
+  category: Applications
+  service: Entra ID
+  severity: High
+  rationale: Central consent review reduces malicious or excessive delegated application access.
+  business_impact: Unreviewed consent can expose mail, files, profiles, and other organizational data.
+  remediation: Remove permission grant policies from the default user role and use the admin consent workflow.
+  recommendation: Keep permissionGrantPoliciesAssigned empty for default users.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/configure-user-consent
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.1"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: equals, field: entra003.authorization_policy.defaultUserRolePermissions.permissionGrantPoliciesAssigned, expected: []}
+  evidence_fields: [entra003.authorization_policy.defaultUserRolePermissions.permissionGrantPoliciesAssigned]
+
+- check_id: M365-ENTRA-014
+  title: Enable the application admin consent request workflow
+  description: Users should have a governed method to request administrator review for application consent.
+  category: Applications
+  service: Entra ID
+  severity: Medium
+  rationale: A review workflow supports business access without restoring unmanaged user consent.
+  business_impact: Without a workflow, users may seek unapproved workarounds or requests may be inconsistently reviewed.
+  remediation: Enable the admin consent request policy and assign qualified reviewers with notifications.
+  recommendation: Set the admin consent request policy isEnabled property to true.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/configure-admin-consent-workflow
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.2"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: GV.PO}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra005]
+  evaluation: {type: equals, field: entra005.admin_consent_request_policy.isEnabled, expected: true}
+  evidence_fields: [entra005.admin_consent_request_policy]
+
+- check_id: M365-ENTRA-015
+  title: Block new application password credentials
+  description: The tenant application management policy should block password and symmetric-key additions for applications and service principals.
+  category: Applications
+  service: Entra ID
+  severity: High
+  rationale: Certificates and workload federation provide stronger proof-of-possession than reusable client secrets.
+  business_impact: Leaked client secrets can permit direct authentication as highly privileged workloads.
+  remediation: Enable tenant-wide passwordAddition and symmetricKeyAddition restrictions for applications and service principals.
+  recommendation: Migrate workloads to certificates or federated identity before enforcing the restriction.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.3"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra005]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra005.default_app_management_policy.isEnabled, expected: true}
+      - type: restriction_set
+        fields:
+          - entra005.restrictions.application.passwordAddition
+          - entra005.restrictions.application.symmetricKeyAddition
+          - entra005.restrictions.service_principal.passwordAddition
+          - entra005.restrictions.service_principal.symmetricKeyAddition
+  evidence_fields: [entra005.default_app_management_policy, entra005.restrictions]
+
+- check_id: M365-ENTRA-016
+  title: Limit application password credentials to 180 days
+  description: New application and service-principal password credentials should have a maximum lifetime of 180 days.
+  category: Applications
+  service: Entra ID
+  severity: High
+  rationale: Shorter credential lifetimes reduce the useful window for a stolen secret.
+  business_impact: Long-lived secrets can remain exploitable long after an unnoticed disclosure.
+  remediation: Enable passwordLifetime and symmetricKeyLifetime restrictions with P180D or shorter values.
+  recommendation: Automate rotation and move toward secretless workload identity.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.4"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra005]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra005.default_app_management_policy.isEnabled, expected: true}
+      - type: restriction_set
+        expected: {max_days: 180}
+        fields:
+          - entra005.restrictions.application.passwordLifetime
+          - entra005.restrictions.application.symmetricKeyLifetime
+          - entra005.restrictions.service_principal.passwordLifetime
+          - entra005.restrictions.service_principal.symmetricKeyLifetime
+  evidence_fields: [entra005.default_app_management_policy, entra005.restrictions]
+
+- check_id: M365-ENTRA-017
+  title: Require system-generated application passwords
+  description: Custom caller-supplied password credentials should be blocked for applications and service principals.
+  category: Applications
+  service: Entra ID
+  severity: Medium
+  rationale: System-generated values avoid predictable, low-entropy, or reused workload passwords.
+  business_impact: Weak custom credentials are easier to guess, reuse, or expose in automation.
+  remediation: Enable customPasswordAddition restrictions for applications and service principals.
+  recommendation: Update automation to accept system-generated secret values.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.5"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra005]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra005.default_app_management_policy.isEnabled, expected: true}
+      - type: restriction_set
+        fields:
+          - entra005.restrictions.application.customPasswordAddition
+          - entra005.restrictions.service_principal.customPasswordAddition
+  evidence_fields: [entra005.default_app_management_policy, entra005.restrictions]
+
+- check_id: M365-ENTRA-018
+  title: Limit application certificates to 180 days
+  description: New application and service-principal certificates should have a maximum lifetime of 180 days.
+  category: Applications
+  service: Entra ID
+  severity: Medium
+  rationale: Regular certificate rotation limits the lifetime of compromised private keys.
+  business_impact: Long-lived certificates extend the period in which stolen workload identity material remains valid.
+  remediation: Enable asymmetricKeyLifetime restrictions with P180D or shorter values for applications and service principals.
+  recommendation: Automate certificate issuance and rotation before enforcement.
+  references:
+    - https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.5.6"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra005]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra005.default_app_management_policy.isEnabled, expected: true}
+      - type: restriction_set
+        expected: {max_days: 180}
+        fields:
+          - entra005.restrictions.application.asymmetricKeyLifetime
+          - entra005.restrictions.service_principal.asymmetricKeyLifetime
+  evidence_fields: [entra005.default_app_management_policy, entra005.restrictions]
+
+- check_id: M365-ENTRA-019
+  title: Keep guest directory visibility limited
+  description: Guests should receive the limited or restricted guest directory role, not member-equivalent visibility.
+  category: External Identities
+  service: Entra ID
+  severity: Medium
+  rationale: Limited directory visibility reduces reconnaissance available to compromised guest identities.
+  business_impact: Member-equivalent guest access can expose users, groups, and membership relationships.
+  remediation: Select limited guest access or the most restrictive guest access option in External Identities settings.
+  recommendation: Use one of the two restricted guest role templates.
+  references:
+    - https://learn.microsoft.com/entra/identity/users/users-restrict-guest-permissions
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.6.2"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation:
+    type: in
+    field: entra003.authorization_policy.guestUserRoleId
+    expected:
+      - 10dae51f-b6af-4016-8d66-8c2a99b929b3
+      - 2af84b1e-32c8-42b7-82bc-daa82404023b
+  evidence_fields: [entra003.authorization_policy.guestUserRoleId]
+
+- check_id: M365-ENTRA-020
+  title: Limit who can invite guest users
+  description: Guest invitations should be limited to designated administrative roles or disabled.
+  category: External Identities
+  service: Entra ID
+  severity: High
+  rationale: A governed invitation path reduces unauthorized external identities in the tenant.
+  business_impact: Broad invitation rights can create unmanaged guest access and data-sharing paths.
+  remediation: Set allowInvitesFrom to adminsAndGuestInviters or none and document the invitation process.
+  recommendation: Assign Guest Inviter only through an approved workflow.
+  references:
+    - https://learn.microsoft.com/graph/api/resources/authorizationpolicy
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.1.6.3"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.All]
+  collector_dependencies: [entra003]
+  evaluation: {type: in, field: entra003.authorization_policy.allowInvitesFrom, expected: [adminsAndGuestInviters, none]}
+  evidence_fields: [entra003.authorization_policy.allowInvitesFrom]
+
+- check_id: M365-ENTRA-021
+  title: Make every active member user MFA-capable
+  description: Every member represented by the registration report should be capable of completing MFA.
+  category: Authentication
+  service: Entra ID
+  severity: High
+  rationale: MFA capability is a prerequisite for resilient access policies and account recovery.
+  business_impact: Users without registered strong authentication remain more exposed to credential theft.
+  remediation: Run an authentication-method registration campaign and resolve every member lacking MFA capability.
+  recommendation: Track registration coverage until no active member is reported as not MFA capable.
+  references:
+    - https://learn.microsoft.com/graph/api/authenticationmethodsroot-list-userregistrationdetails
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.2.3.4"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [AuditLog.Read.All]
+  collector_dependencies: [entra006]
+  evaluation:
+    type: all
+    conditions:
+      - {type: gte, field: entra006.member_user_count, expected: 1}
+      - {type: equals, field: entra006.mfa_not_capable_member_count, expected: 0}
+  evidence_fields: [entra006.member_user_count, entra006.mfa_not_capable_members]
+
+- check_id: M365-ENTRA-022
+  title: Disable SMS and voice authentication methods
+  description: SMS and voice call authentication should be disabled as tenant authentication methods.
+  category: Authentication
+  service: Entra ID
+  severity: High
+  rationale: Telephony methods are susceptible to interception, redirection, and social-engineering attacks.
+  business_impact: Weak authentication methods can undermine otherwise strong access policy requirements.
+  remediation: Disable SMS and voice authentication methods after migrating users to stronger methods.
+  recommendation: Prefer phishing-resistant credentials and Microsoft Authenticator where appropriate.
+  references:
+    - https://learn.microsoft.com/entra/identity/authentication/concept-authentication-methods
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.2.3.5"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.AuthenticationMethod]
+  collector_dependencies: [entra007]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra007.configurations.sms.state, expected: disabled}
+      - {type: equals, field: entra007.configurations.voice.state, expected: disabled}
+  evidence_fields: [entra007.configurations.sms, entra007.configurations.voice]
+
+- check_id: M365-ENTRA-023
+  title: Disable email one-time passcodes as an authentication method
+  description: The tenant authentication-method policy should disable email OTP.
+  category: Authentication
+  service: Entra ID
+  severity: Medium
+  rationale: Email OTP inherits the security of an external mailbox and is weaker than managed strong authentication.
+  business_impact: Compromise of an external mailbox can enable authentication to tenant resources.
+  remediation: Disable the email authentication method after validating external identity sign-in requirements.
+  recommendation: Use managed federation or stronger authentication for external identities.
+  references:
+    - https://learn.microsoft.com/entra/external-id/one-time-passcode
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.2.3.7"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.AuthenticationMethod]
+  collector_dependencies: [entra007]
+  evaluation: {type: equals, field: entra007.configurations.email.state, expected: disabled}
+  evidence_fields: [entra007.configurations.email]
+
+- check_id: M365-ENTRA-024
+  title: Require number matching for Microsoft Authenticator users
+  description: Microsoft Authenticator should be enabled and number matching should target all users.
+  category: Authentication
+  service: Entra ID
+  severity: High
+  rationale: Number matching reduces accidental approval and common MFA push-fatigue attacks.
+  business_impact: Simple approve/deny prompts can be abused through repeated attacker-generated requests.
+  remediation: Enable Microsoft Authenticator number matching for the all_users target and review exclusions.
+  recommendation: Combine number matching with application and location context.
+  references:
+    - https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-number-match
+  benchmarks:
+    - {framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "5.2.3.1"}
+    - {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}
+  required_permissions: [Policy.Read.AuthenticationMethod]
+  collector_dependencies: [entra007]
+  evaluation:
+    type: all
+    conditions:
+      - {type: equals, field: entra007.configurations.microsoftAuthenticator.state, expected: enabled}
+      - {type: equals, field: entra007.configurations.microsoftAuthenticator.featureSettings.numberMatchingRequiredState.state, expected: enabled}
+      - {type: equals, field: entra007.configurations.microsoftAuthenticator.featureSettings.numberMatchingRequiredState.includeTarget.id, expected: all_users}
+  evidence_fields: [entra007.configurations.microsoftAuthenticator]

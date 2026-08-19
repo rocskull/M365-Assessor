@@ -1,0 +1,95 @@
+defaults:
+  description: This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.
+  category: Fabric Security
+  service: Microsoft Fabric
+  severity: Medium
+  rationale: Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.
+  business_impact: Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.
+  recommendation: Scope approved capabilities to reviewed security groups and document business exceptions.
+  references: [https://learn.microsoft.com/fabric/admin/tenant-settings-index]
+  required_permissions: []
+rules:
+  - check_id: M365-FABRIC-001
+    title: Restrict guest access to Microsoft Fabric
+    remediation: Disable guest access or scope it to an approved security group.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: equals_ci, field: setting_name, expected: "Guest users can access Microsoft Fabric"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-002
+    title: Restrict external user invitations from Fabric
+    remediation: Disable external invitations or scope invitation capability to approved administrators.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "Invite external users"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-003
+    title: Restrict guest browsing of Fabric content
+    remediation: Disable guest browsing or scope it to approved collaboration groups.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.3"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "Guest users can browse"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-004
+    title: Restrict Publish to web
+    remediation: Disable Publish to web except for a tightly governed publishing group.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.4"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: equals_ci, field: setting_name, expected: "Publish to web"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-005
+    title: Disable sharing of R and Python visuals
+    remediation: Disable interaction and sharing for R and Python visuals unless specifically governed.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.5"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "R and Python"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-006
+    title: Enable sensitivity labels for Fabric content
+    remediation: Enable sensitivity labels and align the setting with Purview label publication.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.6"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "sensitivity labels"}, {type: equals, field: enabled, expected: true}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-007
+    title: Restrict shareable links in Fabric
+    remediation: Disable broad shareable links or scope them to approved users.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.7"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "shareable links"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-008
+    title: Restrict external data sharing in Fabric
+    remediation: Disable external data sharing or scope it to approved security groups.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.8"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "external data sharing"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-009
+    title: Block ResourceKey authentication
+    remediation: Enable the tenant setting that blocks ResourceKey authentication.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.9"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "Block ResourceKey Authentication"}, {type: equals, field: enabled, expected: true}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-010
+    title: Restrict service-principal access to Fabric APIs
+    remediation: Disable service-principal API access or scope it to approved workload identities.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.10"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "service principals can use"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-011
+    title: Prevent service principals from creating profiles
+    remediation: Disable service-principal profile creation or scope it to approved identities.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.11"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "create profiles"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]
+  - check_id: M365-FABRIC-012
+    title: Prevent service principals from creating Fabric resources
+    remediation: Disable service-principal creation of workspaces, connections, and deployment pipelines or tightly scope it.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "9.1.12"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [fabric001]
+    evaluation: {type: collection, field: fabric001.tenant_settings_json.tenant_settings, quantifier: any, min_count: 1, conditions: [{type: contains, field: setting_name, expected: "create workspaces"}, {type: equals, field: enabled, expected: false}]}
+    evidence_fields: [fabric001.tenant_settings_json.tenant_settings]

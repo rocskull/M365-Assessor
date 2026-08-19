@@ -1,0 +1,225 @@
+version: "3.0.0"
+areas:
+  entra:
+    name: Entra ID
+    collectors:
+      - entra001
+      - entra002
+      - entra003
+      - entra004
+      - entra005
+      - entra006
+      - entra007
+      - entra008
+      - entra009
+      - entra010
+    checks:
+      - M365-ENTRA-001
+      - M365-ENTRA-002
+      - M365-ENTRA-003
+      - M365-ENTRA-004
+      - M365-ENTRA-005
+      - M365-ENTRA-006
+      - M365-ENTRA-007
+      - M365-ENTRA-008
+      - M365-ENTRA-009
+      - M365-ENTRA-010
+      - M365-ENTRA-011
+      - M365-ENTRA-012
+      - M365-ENTRA-013
+      - M365-ENTRA-014
+      - M365-ENTRA-015
+      - M365-ENTRA-016
+      - M365-ENTRA-017
+      - M365-ENTRA-018
+      - M365-ENTRA-019
+      - M365-ENTRA-020
+      - M365-ENTRA-021
+      - M365-ENTRA-022
+      - M365-ENTRA-023
+      - M365-ENTRA-024
+    permissions:
+      - permission: Organization.Read.All
+        required_by_collectors: [entra001]
+        affected_checks: []
+        limitation_severity: High
+      - permission: User.Read.All
+        required_by_collectors: [entra002]
+        affected_checks: [M365-ENTRA-001, M365-ENTRA-002]
+        limitation_severity: High
+      - permission: RoleManagement.Read.Directory
+        required_by_collectors: [entra002]
+        affected_checks: [M365-ENTRA-001, M365-ENTRA-002]
+        limitation_severity: High
+      - permission: GroupMember.Read.All
+        required_by_collectors: [entra002]
+        affected_checks: [M365-ENTRA-001, M365-ENTRA-002]
+        limitation_severity: High
+      - permission: Policy.Read.All
+        required_by_collectors: [entra003, entra005, entra009, entra010]
+        affected_checks:
+          - M365-ENTRA-003
+          - M365-ENTRA-004
+          - M365-ENTRA-005
+          - M365-ENTRA-012
+          - M365-ENTRA-013
+          - M365-ENTRA-014
+          - M365-ENTRA-015
+          - M365-ENTRA-016
+          - M365-ENTRA-017
+          - M365-ENTRA-018
+          - M365-ENTRA-019
+          - M365-ENTRA-020
+        limitation_severity: High
+      - permission: GroupSettings.Read.All
+        required_by_collectors: [entra003]
+        affected_checks: [M365-ENTRA-006]
+        limitation_severity: Medium
+      - permission: Policy.Read.DeviceConfiguration
+        required_by_collectors: [entra004]
+        affected_checks:
+          - M365-ENTRA-007
+          - M365-ENTRA-008
+          - M365-ENTRA-009
+          - M365-ENTRA-010
+          - M365-ENTRA-011
+        limitation_severity: High
+      - permission: AuditLog.Read.All
+        required_by_collectors: [entra006]
+        affected_checks: [M365-ENTRA-021]
+        limitation_severity: High
+      - permission: Policy.Read.AuthenticationMethod
+        required_by_collectors: [entra007]
+        affected_checks: [M365-ENTRA-022, M365-ENTRA-023, M365-ENTRA-024]
+        limitation_severity: High
+      - permission: Group.Read.All
+        required_by_collectors: [entra008]
+        affected_checks: []
+        limitation_severity: Medium
+      - permission: Device.Read.All
+        required_by_collectors: [entra008]
+        affected_checks: []
+        limitation_severity: Medium
+      - permission: Application.Read.All
+        required_by_collectors: [entra008]
+        affected_checks: []
+        limitation_severity: Medium
+      - permission: DelegatedPermissionGrant.Read.All
+        required_by_collectors: [entra008]
+        affected_checks: []
+        limitation_severity: Medium
+  exchange:
+    name: Exchange Online
+    collectors: [exo001, exo002, exo003]
+    checks:
+      - M365-EXO-001
+      - M365-EXO-002
+      - M365-EXO-003
+      - M365-EXO-004
+      - M365-EXO-005
+      - M365-EXO-006
+      - M365-EXO-007
+      - M365-EXO-008
+      - M365-EXO-009
+      - M365-EXO-010
+      - M365-EXO-011
+      - M365-EXO-012
+      - M365-EXO-013
+      - M365-EXO-014
+      - M365-EXO-015
+      - M365-EXO-016
+      - M365-EXO-017
+      - M365-EXO-018
+      - M365-EXO-019
+      - M365-EXO-020
+      - M365-EXO-021
+      - M365-EXO-022
+      - M365-EXO-023
+      - M365-EXO-024
+      - M365-EXO-025
+      - M365-EXO-026
+      - M365-EXO-027
+      - M365-EXO-028
+    permissions:
+      - permission: Exchange Online read session and assigned RBAC
+        detection: collector
+        required_by_collectors: [exo001, exo002, exo003]
+        affected_checks:
+          - M365-EXO-001
+          - M365-EXO-002
+          - M365-EXO-003
+          - M365-EXO-004
+          - M365-EXO-005
+          - M365-EXO-006
+          - M365-EXO-007
+          - M365-EXO-008
+          - M365-EXO-009
+          - M365-EXO-010
+          - M365-EXO-011
+          - M365-EXO-012
+          - M365-EXO-013
+          - M365-EXO-014
+          - M365-EXO-015
+          - M365-EXO-016
+          - M365-EXO-017
+          - M365-EXO-018
+          - M365-EXO-019
+          - M365-EXO-020
+          - M365-EXO-021
+          - M365-EXO-022
+          - M365-EXO-023
+          - M365-EXO-024
+          - M365-EXO-025
+          - M365-EXO-026
+          - M365-EXO-027
+          - M365-EXO-028
+        limitation_severity: High
+  teams:
+    name: Microsoft Teams
+    collectors: [teams001, teams002, teams003]
+    checks: [M365-TEAMS-001, M365-TEAMS-002, M365-TEAMS-003, M365-TEAMS-004, M365-TEAMS-005, M365-TEAMS-006, M365-TEAMS-007, M365-TEAMS-008, M365-TEAMS-009, M365-TEAMS-010, M365-TEAMS-011, M365-TEAMS-012, M365-TEAMS-013, M365-TEAMS-014, M365-TEAMS-015, M365-TEAMS-016]
+    permissions:
+      - permission: Microsoft Teams PowerShell read session and assigned roles
+        detection: collector
+        required_by_collectors: [teams001, teams002, teams003]
+        affected_checks: [M365-TEAMS-001, M365-TEAMS-002, M365-TEAMS-003, M365-TEAMS-004, M365-TEAMS-005, M365-TEAMS-006, M365-TEAMS-007, M365-TEAMS-008, M365-TEAMS-009, M365-TEAMS-010, M365-TEAMS-011, M365-TEAMS-012, M365-TEAMS-013, M365-TEAMS-014, M365-TEAMS-015, M365-TEAMS-016]
+        limitation_severity: High
+  sharepoint:
+    name: SharePoint Online
+    collectors: [sps001, sps002]
+    checks: [M365-SPO-001, M365-SPO-002, M365-SPO-003, M365-SPO-004, M365-SPO-005, M365-SPO-006, M365-SPO-007, M365-SPO-008, M365-SPO-009, M365-SPO-010, M365-SPO-011, M365-SPO-012]
+    permissions:
+      - permission: SharePoint/PnP read session and assigned administration role
+        detection: collector
+        required_by_collectors: [sps001, sps002]
+        affected_checks: [M365-SPO-001, M365-SPO-002, M365-SPO-003, M365-SPO-004, M365-SPO-005, M365-SPO-006, M365-SPO-007, M365-SPO-008, M365-SPO-009, M365-SPO-010, M365-SPO-011, M365-SPO-012]
+        limitation_severity: High
+  purview:
+    name: Microsoft Purview
+    collectors: [purview001, purview002]
+    checks: [M365-PURVIEW-001, M365-PURVIEW-002, M365-PURVIEW-003, M365-PURVIEW-004, M365-PURVIEW-005]
+    permissions:
+      - permission: Security and Compliance PowerShell read session and assigned roles
+        detection: collector
+        required_by_collectors: [purview001, purview002]
+        affected_checks: [M365-PURVIEW-001, M365-PURVIEW-002, M365-PURVIEW-003, M365-PURVIEW-004, M365-PURVIEW-005]
+        limitation_severity: High
+  forms:
+    name: Microsoft Forms
+    collectors: []
+    checks: []
+    permissions:
+      - permission: Forms.Read.All
+        required_by_collectors: []
+        affected_checks: []
+        limitation_severity: Medium
+  fabric:
+    name: Microsoft Fabric
+    collectors: [fabric001]
+    checks: [M365-FABRIC-001, M365-FABRIC-002, M365-FABRIC-003, M365-FABRIC-004, M365-FABRIC-005, M365-FABRIC-006, M365-FABRIC-007, M365-FABRIC-008, M365-FABRIC-009, M365-FABRIC-010, M365-FABRIC-011, M365-FABRIC-012]
+    permissions:
+      - permission: Fabric administrator tenant-settings API access
+        detection: collector
+        required_by_collectors: [fabric001]
+        affected_checks: [M365-FABRIC-001, M365-FABRIC-002, M365-FABRIC-003, M365-FABRIC-004, M365-FABRIC-005, M365-FABRIC-006, M365-FABRIC-007, M365-FABRIC-008, M365-FABRIC-009, M365-FABRIC-010, M365-FABRIC-011, M365-FABRIC-012]
+        limitation_severity: High

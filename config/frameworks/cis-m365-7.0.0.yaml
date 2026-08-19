@@ -1,0 +1,9 @@
+id: cis-m365-7.0.0
+name: CIS Microsoft 365 Foundations Benchmark
+provider: Center for Internet Security
+version: "7.0.0"
+kind: benchmark
+mapping_key: CIS
+description: Versioned framework slot for CIS Microsoft 365 Foundations Benchmark 7.0.0.
+reference_url: https://www.cisecurity.org/benchmark/microsoft_365
+mapping_status: implemented_97_control_pack

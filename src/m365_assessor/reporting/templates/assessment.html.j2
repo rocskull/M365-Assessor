@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Microsoft 365 Security Assessment</title>
+<style>
+:root{--navy:#17324d;--blue:#0b6e99;--ink:#17202a;--muted:#607080;--bg:#f3f6f8;--card:#fff;--red:#b42318;--amber:#b54708;--green:#067647;--line:#d9e2e8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;padding:36px max(24px,calc((100% - 1280px)/2))}header h1{margin:0 0 8px;font-size:30px}header p{margin:2px 0;opacity:.9}.page{max-width:1280px;margin:auto;padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 10px #17324d0d}.metric{font-size:28px;font-weight:750}.label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}.pass{color:var(--green)}.fail,.critical,.high{color:var(--red)}.warning,.medium{color:var(--amber)}.low,.informational{color:var(--blue)}h2{margin:30px 0 12px;font-size:21px}.coverage{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.bar{height:8px;background:#e8eef2;border-radius:8px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--blue)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.toolbar input,.toolbar select{border:1px solid #b9c7d0;border-radius:7px;padding:9px;background:#fff;min-width:180px}table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line)}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{position:sticky;top:0;background:var(--navy);color:#fff;font-size:12px}tr:hover td{background:#f7fbfd}.badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#edf2f5;font-weight:700;font-size:11px}.badge.FAIL,.badge.ERROR{background:#fee4e2;color:var(--red)}.badge.PASS{background:#dcfae6;color:var(--green)}.badge.NOT_ASSESSED,.badge.WARNING{background:#fef0c7;color:var(--amber)}details{margin-top:8px}pre{white-space:pre-wrap;word-break:break-word;background:#f6f8fa;padding:10px;border-radius:6px;max-height:320px;overflow:auto}.limits li{margin:5px 0}footer{color:var(--muted);padding:20px 0 40px}@media(max-width:760px){.table-wrap{overflow-x:auto}header{padding:25px}.page{padding:14px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Microsoft 365 Security Assessment</h1>
+  <p>{{ report.tenant.display_name or report.tenant.tenant_id }}{% if report.tenant.primary_domain %} - {{ report.tenant.primary_domain }}{% endif %}</p>
+  <p>{{ report.assessment.completed_at or report.assessment.started_at }} | {{ report.assessment.tool }} {{ report.assessment.tool_version }}</p>
+  {% if report.assessment.client_name %}<p>Client: {{ report.assessment.client_name }}</p>{% endif %}
+</header>
+<main class="page">
+  <section class="grid" aria-label="Executive summary">
+    <div class="card"><div class="label">Total checks</div><div class="metric">{{ report.summary.total_checks }}</div></div>
+    <div class="card"><div class="label">Passed</div><div class="metric pass">{{ report.summary.pass_count }}</div></div>
+    <div class="card"><div class="label">Failed</div><div class="metric fail">{{ report.summary.fail_count }}</div></div>
+    <div class="card"><div class="label">Not assessed</div><div class="metric warning">{{ report.summary.not_assessed_count }}</div></div>
+    <div class="card"><div class="label">Pass percentage</div><div class="metric">{{ '%.1f'|format(report.summary.pass_percentage) }}%</div></div>
+    <div class="card"><div class="label">Coverage</div><div class="metric">{{ '%.1f'|format(report.summary.coverage_percentage) }}%</div></div>
+  </section>
+
+  <h2>Risk distribution</h2>
+  <section class="grid">
+    <article class="card"><div class="label">By severity</div>{% for name,count in severity_counts.most_common() %}<p>{{ name }} <strong>{{ count }}</strong></p><div class="bar"><i style="width:{{ 100 * count / chart_max }}%"></i></div>{% endfor %}</article>
+    <article class="card"><div class="label">By service</div>{% for name,count in service_counts.most_common() %}<p>{{ name }} <strong>{{ count }}</strong></p><div class="bar"><i style="width:{{ 100 * count / chart_max }}%"></i></div>{% endfor %}</article>
+    <article class="card"><div class="label">By category</div>{% for name,count in category_counts.most_common() %}<p>{{ name }} <strong>{{ count }}</strong></p><div class="bar"><i style="width:{{ 100 * count / chart_max }}%"></i></div>{% endfor %}</article>
+  </section>
+
+  <h2>Priority remediation</h2>
+  <div class="card"><ol>{% for item in report.findings[:5] %}<li><strong>{{ item.check_id }} - {{ item.title }}</strong><br>{{ item.recommendation or item.remediation }}</li>{% endfor %}{% if not report.findings %}<li>No failing controls were identified in the assessed scope.</li>{% endif %}</ol></div>
+
+  <h2>Scope and methodology</h2>
+  <div class="card">
+    <p><strong>Frameworks:</strong> {% for item in report.assessment.frameworks %}{{ item.name }} {{ item.version }}{% if not loop.last %}; {% endif %}{% endfor %}</p>
+    <p><strong>Scope:</strong> {{ report.assessment.scope|join(', ') }}</p>
+    <p>This assessment performs read-only collection, normalizes evidence, and evaluates deterministic versioned rules. Permission and evidence gaps are reported as NOT_ASSESSED and do not reduce the pass percentage.</p>
+  </div>
+
+  <h2>Coverage and permissions</h2>
+  <section class="coverage">
+  {% for area in report.coverage %}
+    <article class="card">
+      <div class="label">{{ area.status.value }}</div><strong>{{ area.name }}</strong>
+      <div class="metric">{{ '%.1f'|format(area.coverage_percent) }}%</div>
+      <div class="bar"><i style="width:{{ area.coverage_percent }}%"></i></div>
+      {% if area.reasons %}<ul class="limits">{% for reason in area.reasons %}<li>{{ reason }}</li>{% endfor %}</ul>{% endif %}
+    </article>
+  {% endfor %}
+  </section>
+
+  <h2>Detailed findings</h2>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search findings" aria-label="Search findings">
+    <select id="severity"><option value="">All severities</option>{% for value in ['Critical','High','Medium','Low','Informational'] %}<option>{{ value }}</option>{% endfor %}</select>
+    <select id="service"><option value="">All services</option>{% for value in report.findings|map(attribute='service')|unique|sort %}<option>{{ value }}</option>{% endfor %}</select>
+  </div>
+  <div class="table-wrap">
+  <table id="findings"><thead><tr><th>ID</th><th>Severity</th><th>Service</th><th>Title and detail</th><th>Mapping</th></tr></thead><tbody>
+  {% for item in report.findings %}
+    <tr data-severity="{{ item.severity.value }}" data-service="{{ item.service }}">
+      <td>{{ item.check_id }}<br><span class="badge {{ item.status.value }}">{{ item.status.value }}</span></td>
+      <td class="{{ item.severity.value|lower }}"><strong>{{ item.severity.value }}</strong></td>
+      <td>{{ item.service }}<br><small>{{ item.category }}</small></td>
+      <td><strong>{{ item.title }}</strong><p>{{ item.description }}</p><p><strong>Observation:</strong> {{ item.observation }}</p><p><strong>Business impact:</strong> {{ item.business_impact }}</p><p><strong>Recommendation:</strong> {{ item.recommendation }}</p><details><summary>Remediation and evidence</summary><p>{{ item.remediation }}</p><pre>{{ item.evidence|tojson(indent=2) }}</pre></details></td>
+      <td>{% for mapping in item.benchmark %}{{ mapping.framework }} {{ mapping.version }}<br>{{ mapping.control }}{% if not loop.last %}<hr>{% endif %}{% endfor %}</td>
+    </tr>
+  {% endfor %}
+  </tbody></table></div>
+
+  <h2>Assessment limitations</h2>
+  <div class="card"><ul class="limits">
+  {% for area in report.coverage %}{% for reason in area.reasons %}<li><strong>{{ area.name }}:</strong> {{ reason }}</li>{% endfor %}{% endfor %}
+  {% if not report.coverage %}<li>No coverage records were supplied.</li>{% endif %}
+  </ul></div>
+  <footer>Generated by {{ report.assessment.tool }} {{ report.assessment.tool_version }}. No tenant configuration changes were made.</footer>
+</main>
+<script>
+const q=document.querySelector('#search'),sev=document.querySelector('#severity'),svc=document.querySelector('#service');
+function filter(){const term=q.value.toLowerCase();document.querySelectorAll('#findings tbody tr').forEach(r=>{r.hidden=!(r.innerText.toLowerCase().includes(term)&&(!sev.value||r.dataset.severity===sev.value)&&(!svc.value||r.dataset.service===svc.value));});}
+[q,sev,svc].forEach(x=>x.addEventListener('input',filter));
+</script>
+</body></html>

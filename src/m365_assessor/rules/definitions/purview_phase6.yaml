@@ -1,0 +1,46 @@
+defaults:
+  description: This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.
+  category: Data Protection
+  service: Microsoft Purview
+  severity: High
+  rationale: Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.
+  business_impact: Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.
+  recommendation: Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.
+  references: [https://learn.microsoft.com/purview/purview]
+  required_permissions: []
+rules:
+  - check_id: M365-PURVIEW-001
+    title: Enable Microsoft 365 unified audit ingestion
+    remediation: Enable unified audit log ingestion and verify audit search receives current events.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "3.1.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: DE.CM}]
+    collector_dependencies: [purview001]
+    evaluation: {type: equals, field: purview001.audit_config.unified_audit_log_ingestion_enabled, expected: true}
+    evidence_fields: [purview001.audit_config]
+  - check_id: M365-PURVIEW-002
+    title: Maintain enabled data loss prevention policies
+    remediation: Create, validate, enable, and enforce DLP policies for organizational sensitive-data scenarios.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "3.2.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [purview001]
+    evaluation: {type: collection, field: purview001.dlp_policies, quantifier: any, min_count: 1, conditions: [{type: equals, field: enabled, expected: true}]}
+    evidence_fields: [purview001.dlp_policies, purview001.dlp_rules]
+  - check_id: M365-PURVIEW-003
+    title: Apply an enabled DLP policy to Microsoft Teams
+    remediation: Include Teams chat and channel messages in an enabled, enforced DLP policy.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "3.2.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [purview001]
+    evaluation: {type: collection, field: purview001.dlp_policies, quantifier: any, min_count: 1, conditions: [{type: equals, field: enabled, expected: true}, {type: contains, field: workload, expected: Teams}]}
+    evidence_fields: [purview001.dlp_policies]
+  - check_id: M365-PURVIEW-004
+    title: Apply DLP policies to Copilot users
+    remediation: Publish an enabled DLP policy that covers supported Copilot interactions and locations.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "3.2.3"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [purview001]
+    evaluation: {type: collection, field: purview001.dlp_policies, quantifier: any, min_count: 1, conditions: [{type: equals, field: enabled, expected: true}, {type: contains, field: workload, expected: Copilot}]}
+    evidence_fields: [purview001.dlp_policies]
+  - check_id: M365-PURVIEW-005
+    title: Publish sensitivity-label policies
+    remediation: Publish enabled sensitivity-label policies to governed users and groups.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "3.3.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [purview002]
+    evaluation: {type: collection, field: purview002.label_policies, quantifier: any, min_count: 1, conditions: [{type: equals, field: enabled, expected: true}, {type: truthy, field: labels}]}
+    evidence_fields: [purview002.label_policies]

@@ -1,0 +1,9 @@
+id: client-baseline-1.0
+name: Example Client Security Baseline
+provider: Example Organization
+version: "1.0"
+kind: custom
+mapping_key: CLIENT
+description: Example external framework definition; copy this file outside the built-in directory.
+reference_url: https://example.invalid/security-baseline
+mapping_status: client_managed

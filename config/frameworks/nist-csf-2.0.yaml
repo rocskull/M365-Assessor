@@ -1,0 +1,9 @@
+id: nist-csf-2.0
+name: NIST Cybersecurity Framework
+provider: National Institute of Standards and Technology
+version: "2.0"
+kind: framework
+mapping_key: NIST
+description: NIST CSF 2.0 framework slot with Govern, Identify, Protect, Detect, Respond, and Recover.
+reference_url: https://www.nist.gov/cyberframework
+mapping_status: implemented_97_control_pack

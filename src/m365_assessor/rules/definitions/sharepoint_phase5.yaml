@@ -1,0 +1,105 @@
+defaults:
+  description: This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.
+  category: SharePoint Security
+  service: SharePoint Online
+  severity: High
+  rationale: Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.
+  business_impact: Permissive sharing defaults can expose organizational content beyond intended recipients.
+  recommendation: Test sharing-policy changes with representative sites and approved partner workflows.
+  references: [https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell]
+  required_permissions: []
+rules:
+  - check_id: M365-SPO-001
+    title: Require modern authentication for SharePoint applications
+    remediation: Disable legacy authentication protocols for SharePoint Online applications.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals, field: sps001.tenant.legacy_auth_protocols_enabled, expected: false}
+    evidence_fields: [sps001.tenant.legacy_auth_protocols_enabled]
+  - check_id: M365-SPO-002
+    title: Enable Entra B2B integration for SharePoint and OneDrive
+    remediation: Enable the tenant Entra B2B integration after planning migration of existing guest links.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.2"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals, field: sps001.tenant.enable_azure_adb2_bintegration, expected: true}
+    evidence_fields: [sps001.tenant.enable_azure_adb2_bintegration]
+  - check_id: M365-SPO-003
+    title: Restrict external content sharing to authenticated guests
+    remediation: Set tenant sharing to authenticated new/existing guests or a more restrictive option.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.3"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: in_ci, field: sps001.tenant.sharing_capability, expected: [Disabled, ExistingExternalUserSharingOnly, ExternalUserSharingOnly]}
+    evidence_fields: [sps001.tenant.sharing_capability]
+  - check_id: M365-SPO-004
+    title: Disable external content sharing from OneDrive
+    severity: Medium
+    remediation: Set OneDriveSharingCapability to Disabled and review site-specific exceptions.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.4"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals_ci, field: sps001.tenant.one_drive_sharing_capability, expected: Disabled}
+    evidence_fields: [sps001.tenant.one_drive_sharing_capability]
+  - check_id: M365-SPO-005
+    title: Prevent guests from resharing content they do not own
+    remediation: Enable PreventExternalUsersFromResharing at the tenant level.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.5"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals, field: sps001.tenant.prevent_external_users_from_resharing, expected: true}
+    evidence_fields: [sps001.tenant.prevent_external_users_from_resharing]
+  - check_id: M365-SPO-006
+    title: Restrict SharePoint external sharing by domain
+    remediation: Disable external sharing or use an allow list populated with approved partner domains.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.6"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation:
+      type: any
+      conditions:
+        - {type: equals_ci, field: sps001.tenant.sharing_capability, expected: Disabled}
+        - {type: all, conditions: [{type: equals_ci, field: sps001.tenant.sharing_domain_restriction_mode, expected: AllowList}, {type: truthy, field: sps001.tenant.sharing_allowed_domain_list}]}
+    evidence_fields: [sps001.tenant.sharing_capability, sps001.tenant.sharing_domain_restriction_mode, sps001.tenant.sharing_allowed_domain_list]
+  - check_id: M365-SPO-007
+    title: Use restrictive default sharing link types
+    remediation: Set DefaultSharingLinkType to Direct or Internal.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.7"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: in_ci, field: sps001.tenant.default_sharing_link_type, expected: [Direct, Internal]}
+    evidence_fields: [sps001.tenant.default_sharing_link_type]
+  - check_id: M365-SPO-008
+    title: Restrict external sharing to an approved security group
+    severity: Medium
+    remediation: Disable sharing or populate WhoCanShareAuthenticatedGuestAllowList with approved security groups.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.8"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [sps001]
+    evaluation:
+      type: any
+      conditions:
+        - {type: equals_ci, field: sps001.tenant.sharing_capability, expected: Disabled}
+        - {type: truthy, field: sps001.tenant.who_can_share_authenticated_guest_allow_list}
+    evidence_fields: [sps001.tenant.who_can_share_authenticated_guest_allow_list]
+  - check_id: M365-SPO-009
+    title: Expire guest access automatically
+    remediation: Require guest expiration and set ExternalUserExpireInDays to 30 or fewer.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.9"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [sps001]
+    evaluation: {type: all, conditions: [{type: equals, field: sps001.tenant.external_user_expiration_required, expected: true}, {type: lte, field: sps001.tenant.external_user_expire_in_days, expected: 30}]}
+    evidence_fields: [sps001.tenant.external_user_expiration_required, sps001.tenant.external_user_expire_in_days]
+  - check_id: M365-SPO-010
+    title: Require frequent guest verification-code reauthentication
+    remediation: Require email attestation and set reauthentication to 15 days or fewer.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.10"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.AA}]
+    collector_dependencies: [sps001]
+    evaluation: {type: all, conditions: [{type: equals, field: sps001.tenant.email_attestation_required, expected: true}, {type: lte, field: sps001.tenant.email_attestation_re_auth_days, expected: 15}]}
+    evidence_fields: [sps001.tenant.email_attestation_required, sps001.tenant.email_attestation_re_auth_days]
+  - check_id: M365-SPO-011
+    title: Default sharing link permissions to view
+    remediation: Set DefaultLinkPermission to View so editing is an explicit user choice.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.2.11"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals_ci, field: sps001.tenant.default_link_permission, expected: View}
+    evidence_fields: [sps001.tenant.default_link_permission]
+  - check_id: M365-SPO-012
+    title: Disallow downloads of infected SharePoint files
+    remediation: Enable DisallowInfectedFileDownload in the SharePoint tenant configuration.
+    benchmarks: [{framework: CIS, benchmark: Microsoft 365 Foundations, version: "7.0.0", control: "7.3.1"}, {framework: NIST, benchmark: Cybersecurity Framework, version: "2.0", control: PR.DS}]
+    collector_dependencies: [sps001]
+    evaluation: {type: equals, field: sps001.tenant.disallow_infected_file_download, expected: true}
+    evidence_fields: [sps001.tenant.disallow_infected_file_download]
