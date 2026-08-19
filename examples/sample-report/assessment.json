@@ -1,0 +1,4785 @@
+{
+  "assessment": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "tool": "m365-assessor",
+    "tool_version": "1.2.0",
+    "client_name": "Contoso (synthetic sample)",
+    "started_at": "2026-08-19T09:30:00Z",
+    "completed_at": "2026-08-19T09:30:00Z",
+    "scope": [
+      "entra",
+      "exchange",
+      "teams",
+      "sharepoint",
+      "purview",
+      "fabric"
+    ],
+    "frameworks": [
+      {
+        "id": "cis-m365-7.0.0",
+        "name": "CIS Microsoft 365 Foundations Benchmark",
+        "version": "7.0.0"
+      },
+      {
+        "id": "nist-csf-2.0",
+        "name": "NIST Cybersecurity Framework",
+        "version": "2.0"
+      }
+    ],
+    "dry_run": false
+  },
+  "tenant": {
+    "tenant_id": "22222222-2222-4222-8222-222222222222",
+    "display_name": "Contoso (synthetic sample)",
+    "primary_domain": "contoso.example",
+    "verified_domains": [
+      "contoso.example"
+    ]
+  },
+  "authentication": {
+    "method": "certificate",
+    "identity": "synthetic-service-principal",
+    "tenant_id": "22222222-2222-4222-8222-222222222222",
+    "client_id": "33333333-3333-4333-8333-333333333333",
+    "permission_source": "synthetic_fixture"
+  },
+  "coverage": [
+    {
+      "area": "entra",
+      "name": "Entra ID",
+      "status": "ASSESSED",
+      "coverage_percent": 98.0,
+      "reasons": [],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "exchange",
+      "name": "Exchange Online",
+      "status": "ASSESSED",
+      "coverage_percent": 100.0,
+      "reasons": [],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "teams",
+      "name": "Microsoft Teams",
+      "status": "ASSESSED",
+      "coverage_percent": 94.0,
+      "reasons": [],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "sharepoint",
+      "name": "SharePoint Online",
+      "status": "ASSESSED",
+      "coverage_percent": 100.0,
+      "reasons": [],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "purview",
+      "name": "Microsoft Purview",
+      "status": "PARTIAL",
+      "coverage_percent": 87.0,
+      "reasons": [
+        "One licensed workload was unavailable in the synthetic dataset."
+      ],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "forms",
+      "name": "Microsoft Forms",
+      "status": "NOT_ASSESSED",
+      "coverage_percent": 0.0,
+      "reasons": [
+        "Forms collection is not implemented in this release."
+      ],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    },
+    {
+      "area": "fabric",
+      "name": "Microsoft Fabric",
+      "status": "ASSESSED",
+      "coverage_percent": 100.0,
+      "reasons": [],
+      "required_permissions": [],
+      "detected_permissions": [],
+      "missing_permissions": [],
+      "affected_collectors": [],
+      "affected_checks": []
+    }
+  ],
+  "collectors": {
+    "entra001": {
+      "collector_id": "entra001",
+      "name": "Entra ID",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra002": {
+      "collector_id": "entra002",
+      "name": "Entra privileged users and roles",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra003": {
+      "collector_id": "entra003",
+      "name": "Entra authorization and group settings",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra004": {
+      "collector_id": "entra004",
+      "name": "Entra device registration policy",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra005": {
+      "collector_id": "entra005",
+      "name": "Entra application and consent policy",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra006": {
+      "collector_id": "entra006",
+      "name": "Entra MFA registration",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra007": {
+      "collector_id": "entra007",
+      "name": "Entra authentication methods policy",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra008": {
+      "collector_id": "entra008",
+      "name": "Entra directory inventory",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra009": {
+      "collector_id": "entra009",
+      "name": "Entra Conditional Access",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "entra010": {
+      "collector_id": "entra010",
+      "name": "Entra cross-tenant access",
+      "area": "entra",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "exo001": {
+      "collector_id": "exo001",
+      "name": "Exchange organization configuration",
+      "area": "exchange",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "exo002": {
+      "collector_id": "exo002",
+      "name": "Exchange threat protection",
+      "area": "exchange",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "exo003": {
+      "collector_id": "exo003",
+      "name": "Exchange mailbox audit and mail flow",
+      "area": "exchange",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "fabric001": {
+      "collector_id": "fabric001",
+      "name": "Microsoft Fabric tenant settings",
+      "area": "fabric",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "purview001": {
+      "collector_id": "purview001",
+      "name": "Purview audit and DLP policies",
+      "area": "purview",
+      "status": "PARTIAL",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": "Mock dataset omits one licensed Purview workload.",
+      "data": {
+        "mock": true
+      }
+    },
+    "purview002": {
+      "collector_id": "purview002",
+      "name": "Purview information governance",
+      "area": "purview",
+      "status": "PARTIAL",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": "Mock dataset omits one licensed Purview workload.",
+      "data": {
+        "mock": true
+      }
+    },
+    "sps001": {
+      "collector_id": "sps001",
+      "name": "SharePoint and OneDrive tenant policy",
+      "area": "sharepoint",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "sps002": {
+      "collector_id": "sps002",
+      "name": "SharePoint and OneDrive sites",
+      "area": "sharepoint",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "teams001": {
+      "collector_id": "teams001",
+      "name": "Teams tenant and federation configuration",
+      "area": "teams",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "teams002": {
+      "collector_id": "teams002",
+      "name": "Teams meeting policies",
+      "area": "teams",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    },
+    "teams003": {
+      "collector_id": "teams003",
+      "name": "Teams messaging and application policies",
+      "area": "teams",
+      "status": "SUCCESS",
+      "started_at": "2026-08-19T04:49:46.330099Z",
+      "completed_at": "2026-08-19T04:49:46.330099Z",
+      "objects_collected": 1,
+      "pages_collected": 1,
+      "api_errors": [],
+      "limitation_reason": null,
+      "data": {
+        "mock": true
+      }
+    }
+  },
+  "checks": [
+    {
+      "check_id": "M365-ENTRA-001",
+      "title": "Keep privileged user accounts cloud-native",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Identity",
+      "description": "Privileged Entra role holders should not depend on an on-premises identity source.",
+      "rationale": "A separate cloud authentication boundary reduces exposure to an on-premises compromise.",
+      "business_impact": "Synced privileged identities can extend an Active Directory compromise into Microsoft 365.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "1.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 1
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Migrate active privileged role holders to dedicated cloud-only accounts.",
+      "remediation": "Create dedicated cloud-only administrator identities, transfer role assignments, and protect them with strong Conditional Access.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-002",
+      "title": "Maintain a resilient number of Global Administrators",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Privileged Access",
+      "description": "The tenant should have between two and four active Global Administrator users.",
+      "rationale": "Too few administrators harms recovery, while too many increases the privileged attack surface.",
+      "business_impact": "Poorly balanced Global Administrator coverage can cause lockout or excessive privilege exposure.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "1.1.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 2
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review direct and role-assignable-group Global Administrator membership.",
+      "remediation": "Retain two to four dedicated Global Administrators and use lower-privileged roles for routine work.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-003",
+      "title": "Prevent ordinary users from registering applications",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "Default users should not be permitted to create application registrations.",
+      "rationale": "Controlled application onboarding reduces unreviewed identities and delegated access paths.",
+      "business_impact": "Unrestricted registrations can introduce shadow applications and consent risk.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.2.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 3
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Set allowedToCreateApps to false in the authorization policy.",
+      "remediation": "Disable application registration for default users and delegate application creation through an approved role or process.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/resources/authorizationpolicy"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-004",
+      "title": "Prevent ordinary users from creating tenants",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Identity",
+      "description": "Non-administrators should not be able to create new Entra tenants from the organization.",
+      "rationale": "Tenant creation should be governed to avoid unmanaged organizational directories.",
+      "business_impact": "Unmanaged tenants can become shadow-IT environments outside security oversight.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.2.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "GV.PO"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 4
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Set allowedToCreateTenants to false for the default user role.",
+      "remediation": "Restrict tenant creation to approved administrators through the Entra authorization policy.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/authorizationpolicy-get"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-005",
+      "title": "Restrict security-group creation to administrators",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Groups",
+      "description": "Default users should not be allowed to create security groups.",
+      "rationale": "Security groups are authorization primitives and should follow a governed creation process.",
+      "business_impact": "Uncontrolled group creation can lead to inconsistent access assignments and privilege sprawl.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.3.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 5
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Set allowedToCreateSecurityGroups to false.",
+      "remediation": "Disable security-group creation in default user role permissions and provide a managed request path.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/resources/authorizationpolicy"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-006",
+      "title": "Govern Microsoft 365 group creation",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Groups",
+      "description": "General users should not be able to create Microsoft 365 groups without an approved scope.",
+      "rationale": "A controlled group lifecycle reduces abandoned workspaces and unmanaged collaboration surfaces.",
+      "business_impact": "Unrestricted creation increases data sprawl, ownership gaps, and external-sharing exposure.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.3.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "GV.PO"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 6
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Limit group creation through the Group.Unified tenant setting.",
+      "remediation": "Configure Group.Unified with EnableGroupCreation false and, if needed, specify an approved creator group.",
+      "references": [
+        "https://learn.microsoft.com/graph/group-directory-settings"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-007",
+      "title": "Limit who can join devices to Entra ID",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "Device join should be denied by default or scoped to selected identities.",
+      "rationale": "Restricting device join reduces attacker persistence through unauthorized device identities.",
+      "business_impact": "Broad device join rights can allow unmanaged devices to appear trusted.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 7
+        }
+      },
+      "affected_resources": [
+        "mock-resource-7"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Replace the all-users join scope with selected identities or no user scope.",
+      "remediation": "Scope Entra join to a managed group or disable user-driven joining where it is unnecessary.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-008",
+      "title": "Cap user device registrations at ten",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "A user should be limited to no more than ten Entra joined or registered devices.",
+      "rationale": "A bounded quota constrains unauthorized enrollment and reduces stale device identities.",
+      "business_impact": "Excessive quotas can support persistence and complicate device governance.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 8
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Configure a device quota of ten or fewer.",
+      "remediation": "Set userDeviceQuota to ten or fewer; use Device Enrollment Manager accounts for approved bulk enrollment.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/resources/deviceregistrationpolicy"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-009",
+      "title": "Do not make Global Administrators local device administrators automatically",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "Global Administrator membership should not automatically grant local administrator rights during Entra join.",
+      "rationale": "Separating cloud administration from endpoint administration limits privilege concentration.",
+      "business_impact": "Automatic local rights increase credential exposure and lateral-movement impact.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 9
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Use dedicated endpoint administration roles instead of Global Administrators.",
+      "remediation": "Disable enableGlobalAdmins in the Entra join local administrator policy.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/resources/deviceregistrationpolicy"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-010",
+      "title": "Limit local administrators assigned during device join",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "Registering users should not universally receive local administrator rights on joined devices.",
+      "rationale": "Selected administrative groups provide tighter endpoint privilege control than all registering users.",
+      "business_impact": "Broad local administration increases malware execution and credential theft risk.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 10
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Use an enumerated or empty registering-users scope.",
+      "remediation": "Scope registering-user local administration to selected users/groups or disable it.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-011",
+      "title": "Enable Entra Local Administrator Password Solution",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "The tenant device registration policy should enable Local Administrator Password Solution.",
+      "rationale": "Unique, rotated local administrator passwords reduce credential reuse across endpoints.",
+      "business_impact": "Shared or unmanaged local passwords enable lateral movement after endpoint compromise.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 11
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Set localAdminPassword.isEnabled to true.",
+      "remediation": "Enable Microsoft Entra LAPS and deploy the corresponding device policy to supported endpoints.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/devices/howto-manage-local-admin-passwords"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-012",
+      "title": "Restrict users from reading their stored BitLocker keys",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "Default users should not be able to retrieve BitLocker recovery keys for owned devices.",
+      "rationale": "Recovery-key access should follow a controlled support and authorization process.",
+      "business_impact": "Compromised user accounts could expose recovery material for organizational devices.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 12
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Provide key recovery through approved support roles and workflows.",
+      "remediation": "Disable allowedToReadBitlockerKeysForOwnedDevice in default user role permissions.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/authorizationpolicy-get"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-013",
+      "title": "Block default end-user application consent",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "Default user role permissions should not assign self-service permission-grant policies.",
+      "rationale": "Central consent review reduces malicious or excessive delegated application access.",
+      "business_impact": "Unreviewed consent can expose mail, files, profiles, and other organizational data.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 13
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Keep permissionGrantPoliciesAssigned empty for default users.",
+      "remediation": "Remove permission grant policies from the default user role and use the admin consent workflow.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-user-consent"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-014",
+      "title": "Enable the application admin consent request workflow",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "Users should have a governed method to request administrator review for application consent.",
+      "rationale": "A review workflow supports business access without restoring unmanaged user consent.",
+      "business_impact": "Without a workflow, users may seek unapproved workarounds or requests may be inconsistently reviewed.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "GV.PO"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 14
+        }
+      },
+      "affected_resources": [
+        "mock-resource-14"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Set the admin consent request policy isEnabled property to true.",
+      "remediation": "Enable the admin consent request policy and assign qualified reviewers with notifications.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-admin-consent-workflow"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-015",
+      "title": "Block new application password credentials",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "The tenant application management policy should block password and symmetric-key additions for applications and service principals.",
+      "rationale": "Certificates and workload federation provide stronger proof-of-possession than reusable client secrets.",
+      "business_impact": "Leaked client secrets can permit direct authentication as highly privileged workloads.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 15
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Migrate workloads to certificates or federated identity before enforcing the restriction.",
+      "remediation": "Enable tenant-wide passwordAddition and symmetricKeyAddition restrictions for applications and service principals.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-016",
+      "title": "Limit application password credentials to 180 days",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "New application and service-principal password credentials should have a maximum lifetime of 180 days.",
+      "rationale": "Shorter credential lifetimes reduce the useful window for a stolen secret.",
+      "business_impact": "Long-lived secrets can remain exploitable long after an unnoticed disclosure.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 16
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Automate rotation and move toward secretless workload identity.",
+      "remediation": "Enable passwordLifetime and symmetricKeyLifetime restrictions with P180D or shorter values.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-017",
+      "title": "Require system-generated application passwords",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "Custom caller-supplied password credentials should be blocked for applications and service principals.",
+      "rationale": "System-generated values avoid predictable, low-entropy, or reused workload passwords.",
+      "business_impact": "Weak custom credentials are easier to guess, reuse, or expose in automation.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 17
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Update automation to accept system-generated secret values.",
+      "remediation": "Enable customPasswordAddition restrictions for applications and service principals.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-018",
+      "title": "Limit application certificates to 180 days",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "New application and service-principal certificates should have a maximum lifetime of 180 days.",
+      "rationale": "Regular certificate rotation limits the lifetime of compromised private keys.",
+      "business_impact": "Long-lived certificates extend the period in which stolen workload identity material remains valid.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 18
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Automate certificate issuance and rotation before enforcement.",
+      "remediation": "Enable asymmetricKeyLifetime restrictions with P180D or shorter values for applications and service principals.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-019",
+      "title": "Keep guest directory visibility limited",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "External Identities",
+      "description": "Guests should receive the limited or restricted guest directory role, not member-equivalent visibility.",
+      "rationale": "Limited directory visibility reduces reconnaissance available to compromised guest identities.",
+      "business_impact": "Member-equivalent guest access can expose users, groups, and membership relationships.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.6.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 19
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Use one of the two restricted guest role templates.",
+      "remediation": "Select limited guest access or the most restrictive guest access option in External Identities settings.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/users/users-restrict-guest-permissions"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-020",
+      "title": "Limit who can invite guest users",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "External Identities",
+      "description": "Guest invitations should be limited to designated administrative roles or disabled.",
+      "rationale": "A governed invitation path reduces unauthorized external identities in the tenant.",
+      "business_impact": "Broad invitation rights can create unmanaged guest access and data-sharing paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.6.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 20
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Assign Guest Inviter only through an approved workflow.",
+      "remediation": "Set allowInvitesFrom to adminsAndGuestInviters or none and document the invitation process.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/resources/authorizationpolicy"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-021",
+      "title": "Make every active member user MFA-capable",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Authentication",
+      "description": "Every member represented by the registration report should be capable of completing MFA.",
+      "rationale": "MFA capability is a prerequisite for resilient access policies and account recovery.",
+      "business_impact": "Users without registered strong authentication remain more exposed to credential theft.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.2.3.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 21
+        }
+      },
+      "affected_resources": [
+        "mock-resource-21"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Track registration coverage until no active member is reported as not MFA capable.",
+      "remediation": "Run an authentication-method registration campaign and resolve every member lacking MFA capability.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/authenticationmethodsroot-list-userregistrationdetails"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-022",
+      "title": "Disable SMS and voice authentication methods",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Entra ID",
+      "category": "Authentication",
+      "description": "SMS and voice call authentication should be disabled as tenant authentication methods.",
+      "rationale": "Telephony methods are susceptible to interception, redirection, and social-engineering attacks.",
+      "business_impact": "Weak authentication methods can undermine otherwise strong access policy requirements.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.2.3.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 22
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Prefer phishing-resistant credentials and Microsoft Authenticator where appropriate.",
+      "remediation": "Disable SMS and voice authentication methods after migrating users to stronger methods.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/authentication/concept-authentication-methods"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-023",
+      "title": "Disable email one-time passcodes as an authentication method",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Authentication",
+      "description": "The tenant authentication-method policy should disable email OTP.",
+      "rationale": "Email OTP inherits the security of an external mailbox and is weaker than managed strong authentication.",
+      "business_impact": "Compromise of an external mailbox can enable authentication to tenant resources.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.2.3.7"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 23
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Use managed federation or stronger authentication for external identities.",
+      "remediation": "Disable the email authentication method after validating external identity sign-in requirements.",
+      "references": [
+        "https://learn.microsoft.com/entra/external-id/one-time-passcode"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-024",
+      "title": "Require number matching for Microsoft Authenticator users",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Entra ID",
+      "category": "Authentication",
+      "description": "Microsoft Authenticator should be enabled and number matching should target all users.",
+      "rationale": "Number matching reduces accidental approval and common MFA push-fatigue attacks.",
+      "business_impact": "Simple approve/deny prompts can be abused through repeated attacker-generated requests.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.2.3.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 24
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Combine number matching with application and location context.",
+      "remediation": "Enable Microsoft Authenticator number matching for the all_users target and review exclusions.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/authentication/how-to-mfa-number-match"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-001",
+      "title": "Enable Safe Links for Office applications",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 25
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable Office application scanning in an assigned Safe Links policy.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-002",
+      "title": "Enable the common attachment type filter",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 26
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable file-type filtering in each effective malware policy.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-003",
+      "title": "Notify administrators when internal users send malware",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 27
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable internal-sender administrator notifications in effective malware policies.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-004",
+      "title": "Enable Safe Attachments policies",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 28
+        }
+      },
+      "affected_resources": [
+        "mock-resource-28"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable an assigned Safe Attachments policy with a blocking or dynamic-delivery action.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-005",
+      "title": "Enable Safe Attachments for SharePoint, OneDrive, and Teams",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 29
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable Defender protection for SharePoint, OneDrive, and Teams content.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-006",
+      "title": "Notify administrators about outbound spam",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 30
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Configure outbound spam policies to notify monitored administrators.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-007",
+      "title": "Maintain an enabled anti-phishing policy",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.7"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 31
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Create, enable, and assign an anti-phishing policy to protected recipients.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-008",
+      "title": "Publish SPF for every accepted Exchange domain",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.8"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 32
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Publish an accurate SPF TXT record for each mail-sending accepted domain.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-009",
+      "title": "Enable DKIM for every Exchange Online domain",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.9"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 33
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Provision and enable DKIM signing for each applicable custom domain.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-010",
+      "title": "Publish DMARC for every accepted Exchange domain",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.10"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 34
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Publish a valid DMARC TXT record for every mail-sending accepted domain.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-011",
+      "title": "Apply attachment filtering comprehensively",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.11"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 35
+        }
+      },
+      "affected_resources": [
+        "mock-resource-35"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable the common file filter in every effective malware policy and review file types.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-012",
+      "title": "Keep connection-filter IP allow lists empty",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.12"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 36
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Remove IP allow-list entries and use authenticated connectors where a trusted route is required.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-013",
+      "title": "Disable the connection-filter safe list",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.13"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 37
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Disable EnableSafeList in each hosted connection-filter policy.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-014",
+      "title": "Avoid allowed domains in inbound anti-spam policies",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.14"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 38
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Remove allowed sender domains from inbound anti-spam policies and use narrowly scoped alternatives.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-015",
+      "title": "Configure outbound anti-spam recipient limits",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.15"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 39
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Set bounded hourly and daily recipient limits and an enforcement action in outbound policies.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-016",
+      "title": "Keep organization-wide mailbox auditing enabled",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 40
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Set AuditDisabled to false at the Exchange organization level.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-017",
+      "title": "Enable auditing on every mailbox",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.1.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 41
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable mailbox auditing and configure the required owner, delegate, and administrator actions.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-018",
+      "title": "Disable mailbox audit bypass",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.1.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 42
+        }
+      },
+      "affected_resources": [
+        "mock-resource-42"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Disable AuditBypassEnabled for every mailbox audit bypass association.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-019",
+      "title": "Block mailbox and remote-domain forwarding",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 43
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Remove mailbox forwarding and disable automatic forwarding on remote domains.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-020",
+      "title": "Do not use transport rules to whitelist sender domains",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.2.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 44
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Remove rules that combine sender-domain conditions with an SCL bypass action.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-021",
+      "title": "Identify messages from external senders",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.2.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 45
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable the external sender identification feature in Exchange Online.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-022",
+      "title": "Restrict users from installing Outlook add-ins",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.3.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 46
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Remove broad enabled assignments for the user add-in management roles.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-023",
+      "title": "Disable personal accounts in Outlook web policy",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.3.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 47
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Disable personal account and calendar integration in every effective OWA mailbox policy.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-024",
+      "title": "Require modern authentication for Exchange Online",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 48
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable OAuth2 client profiles and remove legacy authentication dependencies.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-025",
+      "title": "Enable Exchange MailTips",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 49
+        }
+      },
+      "affected_resources": [
+        "mock-resource-49"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable all MailTips, external-recipient tips, and group metrics.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-026",
+      "title": "Restrict additional storage providers in Outlook on the web",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 50
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Disable additional storage providers in all effective OWA mailbox policies.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-027",
+      "title": "Disable SMTP AUTH organization-wide",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 51
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Set SmtpClientAuthenticationDisabled to true and document any scoped exceptions.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-028",
+      "title": "Reject unauthenticated Direct Send submissions",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 52
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable the Exchange organization setting that rejects Direct Send.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-001",
+      "title": "Restrict guest access to Microsoft Fabric",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 53
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable guest access or scope it to an approved security group.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-002",
+      "title": "Restrict external user invitations from Fabric",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 54
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable external invitations or scope invitation capability to approved administrators.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-003",
+      "title": "Restrict guest browsing of Fabric content",
+      "severity": "Medium",
+      "status": "NOT_ASSESSED",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 55
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable guest browsing or scope it to approved collaboration groups.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-004",
+      "title": "Restrict Publish to web",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 56
+        }
+      },
+      "affected_resources": [
+        "mock-resource-56"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable Publish to web except for a tightly governed publishing group.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-005",
+      "title": "Disable sharing of R and Python visuals",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 57
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable interaction and sharing for R and Python visuals unless specifically governed.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-006",
+      "title": "Enable sensitivity labels for Fabric content",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 58
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Enable sensitivity labels and align the setting with Purview label publication.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-007",
+      "title": "Restrict shareable links in Fabric",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.7"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 59
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable broad shareable links or scope them to approved users.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-008",
+      "title": "Restrict external data sharing in Fabric",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.8"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 60
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable external data sharing or scope it to approved security groups.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-009",
+      "title": "Block ResourceKey authentication",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.9"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 61
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Enable the tenant setting that blocks ResourceKey authentication.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-010",
+      "title": "Restrict service-principal access to Fabric APIs",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.10"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 62
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable service-principal API access or scope it to approved workload identities.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-011",
+      "title": "Prevent service principals from creating profiles",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.11"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 63
+        }
+      },
+      "affected_resources": [
+        "mock-resource-63"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable service-principal profile creation or scope it to approved identities.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-012",
+      "title": "Prevent service principals from creating Fabric resources",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.12"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 64
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable service-principal creation of workspaces, connections, and deployment pipelines or tightly scope it.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-PURVIEW-001",
+      "title": "Enable Microsoft 365 unified audit ingestion",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Purview",
+      "category": "Data Protection",
+      "description": "This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.",
+      "business_impact": "Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "3.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 65
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.",
+      "remediation": "Enable unified audit log ingestion and verify audit search receives current events.",
+      "references": [
+        "https://learn.microsoft.com/purview/purview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-PURVIEW-002",
+      "title": "Maintain enabled data loss prevention policies",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Microsoft Purview",
+      "category": "Data Protection",
+      "description": "This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.",
+      "business_impact": "Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "3.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 66
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.",
+      "remediation": "Create, validate, enable, and enforce DLP policies for organizational sensitive-data scenarios.",
+      "references": [
+        "https://learn.microsoft.com/purview/purview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-PURVIEW-003",
+      "title": "Apply an enabled DLP policy to Microsoft Teams",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Purview",
+      "category": "Data Protection",
+      "description": "This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.",
+      "business_impact": "Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "3.2.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 67
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.",
+      "remediation": "Include Teams chat and channel messages in an enabled, enforced DLP policy.",
+      "references": [
+        "https://learn.microsoft.com/purview/purview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-PURVIEW-004",
+      "title": "Apply DLP policies to Copilot users",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Purview",
+      "category": "Data Protection",
+      "description": "This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.",
+      "business_impact": "Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "3.2.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 68
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.",
+      "remediation": "Publish an enabled DLP policy that covers supported Copilot interactions and locations.",
+      "references": [
+        "https://learn.microsoft.com/purview/purview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-PURVIEW-005",
+      "title": "Publish sensitivity-label policies",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Purview",
+      "category": "Data Protection",
+      "description": "This check evaluates normalized Microsoft Purview configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Audit, DLP, and information-protection policies support detection and prevention of inappropriate data handling.",
+      "business_impact": "Missing compliance controls can reduce visibility and allow sensitive information to leave approved boundaries.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "3.3.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 69
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Validate licensing, policy scope, test-mode results, exceptions, and production enforcement with data owners.",
+      "remediation": "Publish enabled sensitivity-label policies to governed users and groups.",
+      "references": [
+        "https://learn.microsoft.com/purview/purview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-001",
+      "title": "Require modern authentication for SharePoint applications",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 70
+        }
+      },
+      "affected_resources": [
+        "mock-resource-70"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Disable legacy authentication protocols for SharePoint Online applications.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-002",
+      "title": "Enable Entra B2B integration for SharePoint and OneDrive",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 71
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Enable the tenant Entra B2B integration after planning migration of existing guest links.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-003",
+      "title": "Restrict external content sharing to authenticated guests",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 72
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Set tenant sharing to authenticated new/existing guests or a more restrictive option.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-004",
+      "title": "Disable external content sharing from OneDrive",
+      "severity": "Medium",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 73
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Set OneDriveSharingCapability to Disabled and review site-specific exceptions.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-005",
+      "title": "Prevent guests from resharing content they do not own",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 74
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Enable PreventExternalUsersFromResharing at the tenant level.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-006",
+      "title": "Restrict SharePoint external sharing by domain",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 75
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Disable external sharing or use an allow list populated with approved partner domains.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-007",
+      "title": "Use restrictive default sharing link types",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.7"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 76
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Set DefaultSharingLinkType to Direct or Internal.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-008",
+      "title": "Restrict external sharing to an approved security group",
+      "severity": "Medium",
+      "status": "NOT_ASSESSED",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.8"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 77
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Disable sharing or populate WhoCanShareAuthenticatedGuestAllowList with approved security groups.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-009",
+      "title": "Expire guest access automatically",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.9"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 78
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Require guest expiration and set ExternalUserExpireInDays to 30 or fewer.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-010",
+      "title": "Require frequent guest verification-code reauthentication",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.10"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 79
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Require email attestation and set reauthentication to 15 days or fewer.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-011",
+      "title": "Default sharing link permissions to view",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.11"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 80
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Set DefaultLinkPermission to View so editing is an explicit user choice.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-012",
+      "title": "Disallow downloads of infected SharePoint files",
+      "severity": "High",
+      "status": "PASS",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.3.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 81
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Enable DisallowInfectedFileDownload in the SharePoint tenant configuration.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-001",
+      "title": "Allow only approved external cloud storage providers",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.1.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 82
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable unapproved storage providers in Teams files policies and retain only governed services.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-002",
+      "title": "Disable email submission to Teams channels",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.1.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 83
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable AllowEmailIntoChannel in each effective Teams channels policy.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-003",
+      "title": "Restrict external federation domains",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 84
+        }
+      },
+      "affected_resources": [
+        "mock-resource-84"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Configure an explicit allow list of approved external Teams domains.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-004",
+      "title": "Disable communication with unmanaged Teams users",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.2.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 85
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable consumer and public-cloud communication in the tenant federation configuration.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-005",
+      "title": "Prevent external Teams users from initiating conversations",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.2.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 86
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable inbound consumer communication in the tenant federation configuration.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-006",
+      "title": "Block communication with trial Teams tenants",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.2.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 87
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable public-cloud access or explicitly block unmanaged trial tenant communication.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-007",
+      "title": "Prevent anonymous users from joining meetings",
+      "severity": "High",
+      "status": "NOT_ASSESSED",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 88
+        }
+      },
+      "affected_resources": [],
+      "observation": "Mock permission gap prevented collection of the required evidence.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable anonymous meeting join in every effective meeting policy.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-008",
+      "title": "Prevent anonymous and dial-in users from starting meetings",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 89
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable anonymous meeting start in each meeting policy.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-009",
+      "title": "Restrict lobby bypass to organizational participants",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 90
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Configure meeting policies so only trusted organizational participants bypass the lobby.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-010",
+      "title": "Prevent dial-in callers from bypassing the lobby",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 91
+        }
+      },
+      "affected_resources": [
+        "mock-resource-91"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable PSTN lobby bypass in each effective meeting policy.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-011",
+      "title": "Exclude anonymous users from meeting chat",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.5"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 92
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Configure MeetingChatEnabledType to exclude anonymous users.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-012",
+      "title": "Limit presentation to organizers and co-organizers",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.6"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 93
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Configure the designated presenter role to OrganizerOnly.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-013",
+      "title": "Block external participant control requests",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.7"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 94
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable external participant give/request control in meeting policies.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-014",
+      "title": "Disable external non-trusted meeting chat",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.8"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 95
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable external non-trusted meeting chat in all effective policies.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-015",
+      "title": "Disable meeting recording by default",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.9"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 96
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable cloud recording in default and broadly assigned meeting policies.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-016",
+      "title": "Allow users to report Teams security concerns",
+      "severity": "High",
+      "status": "PASS",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.6.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 97
+        }
+      },
+      "affected_resources": [],
+      "observation": "The synthetic tenant value satisfied the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Enable end-user security reporting in effective messaging policies.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "M365-ENTRA-007",
+      "title": "Limit who can join devices to Entra ID",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Devices",
+      "description": "Device join should be denied by default or scoped to selected identities.",
+      "rationale": "Restricting device join reduces attacker persistence through unauthorized device identities.",
+      "business_impact": "Broad device join rights can allow unmanaged devices to appear trusted.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.4.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 7
+        }
+      },
+      "affected_resources": [
+        "mock-resource-7"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Replace the all-users join scope with selected identities or no user scope.",
+      "remediation": "Scope Entra join to a managed group or disable user-driven joining where it is unnecessary.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/deviceregistrationpolicy-get"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-014",
+      "title": "Enable the application admin consent request workflow",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Applications",
+      "description": "Users should have a governed method to request administrator review for application consent.",
+      "rationale": "A review workflow supports business access without restoring unmanaged user consent.",
+      "business_impact": "Without a workflow, users may seek unapproved workarounds or requests may be inconsistently reviewed.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.1.5.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "GV.PO"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 14
+        }
+      },
+      "affected_resources": [
+        "mock-resource-14"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Set the admin consent request policy isEnabled property to true.",
+      "remediation": "Enable the admin consent request policy and assign qualified reviewers with notifications.",
+      "references": [
+        "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-admin-consent-workflow"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-ENTRA-021",
+      "title": "Make every active member user MFA-capable",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Entra ID",
+      "category": "Authentication",
+      "description": "Every member represented by the registration report should be capable of completing MFA.",
+      "rationale": "MFA capability is a prerequisite for resilient access policies and account recovery.",
+      "business_impact": "Users without registered strong authentication remain more exposed to credential theft.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "5.2.3.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 21
+        }
+      },
+      "affected_resources": [
+        "mock-resource-21"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Track registration coverage until no active member is reported as not MFA capable.",
+      "remediation": "Run an authentication-method registration campaign and resolve every member lacking MFA capability.",
+      "references": [
+        "https://learn.microsoft.com/graph/api/authenticationmethodsroot-list-userregistrationdetails"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-004",
+      "title": "Enable Safe Attachments policies",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 28
+        }
+      },
+      "affected_resources": [
+        "mock-resource-28"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable an assigned Safe Attachments policy with a blocking or dynamic-delivery action.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-011",
+      "title": "Apply attachment filtering comprehensively",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "2.1.11"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 35
+        }
+      },
+      "affected_resources": [
+        "mock-resource-35"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable the common file filter in every effective malware policy and review file types.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-018",
+      "title": "Disable mailbox audit bypass",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.1.3"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "DE.CM"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 42
+        }
+      },
+      "affected_resources": [
+        "mock-resource-42"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Disable AuditBypassEnabled for every mailbox audit bypass association.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-EXO-025",
+      "title": "Enable Exchange MailTips",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Exchange Online",
+      "category": "Exchange Security",
+      "description": "This check evaluates normalized Exchange Online configuration collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Consistent tenant-wide messaging controls reduce phishing, malware, data-exfiltration, and account-abuse risk.",
+      "business_impact": "Weak messaging controls can expose users and organizational data to external and internal threats.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "6.5.2"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 49
+        }
+      },
+      "affected_resources": [
+        "mock-resource-49"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review the cited Exchange or Defender policy and approve a tested tenant-wide configuration.",
+      "remediation": "Enable all MailTips, external-recipient tips, and group metrics.",
+      "references": [
+        "https://learn.microsoft.com/powershell/exchange/exchange-online-powershell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-004",
+      "title": "Restrict Publish to web",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.DS"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 56
+        }
+      },
+      "affected_resources": [
+        "mock-resource-56"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable Publish to web except for a tightly governed publishing group.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-FABRIC-011",
+      "title": "Prevent service principals from creating profiles",
+      "severity": "Medium",
+      "status": "FAIL",
+      "service": "Microsoft Fabric",
+      "category": "Fabric Security",
+      "description": "This optional check evaluates a normalized Microsoft Fabric tenant setting returned by the supported administrative API.",
+      "rationale": "Restrictive analytics tenant settings reduce unmanaged external access, publishing, and automation paths.",
+      "business_impact": "Broad Fabric capabilities can expose analytics content or permit ungoverned service-principal activity.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "9.1.11"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 63
+        }
+      },
+      "affected_resources": [
+        "mock-resource-63"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Scope approved capabilities to reviewed security groups and document business exceptions.",
+      "remediation": "Disable service-principal profile creation or scope it to approved identities.",
+      "references": [
+        "https://learn.microsoft.com/fabric/admin/tenant-settings-index"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-SPO-001",
+      "title": "Require modern authentication for SharePoint applications",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "SharePoint Online",
+      "category": "SharePoint Security",
+      "description": "This check evaluates normalized SharePoint Online and OneDrive tenant policy through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant sharing and authentication controls reduce unauthorized disclosure and unmanaged guest access.",
+      "business_impact": "Permissive sharing defaults can expose organizational content beyond intended recipients.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "7.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 70
+        }
+      },
+      "affected_resources": [
+        "mock-resource-70"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Test sharing-policy changes with representative sites and approved partner workflows.",
+      "remediation": "Disable legacy authentication protocols for SharePoint Online applications.",
+      "references": [
+        "https://learn.microsoft.com/powershell/sharepoint/sharepoint-online/introduction-sharepoint-online-management-shell"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-003",
+      "title": "Restrict external federation domains",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.2.1"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 84
+        }
+      },
+      "affected_resources": [
+        "mock-resource-84"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Configure an explicit allow list of approved external Teams domains.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    },
+    {
+      "check_id": "M365-TEAMS-010",
+      "title": "Prevent dial-in callers from bypassing the lobby",
+      "severity": "High",
+      "status": "FAIL",
+      "service": "Microsoft Teams",
+      "category": "Teams Security",
+      "description": "This check evaluates normalized Microsoft Teams tenant policy collected through read-only Microsoft-supported interfaces.",
+      "rationale": "Tenant-wide collaboration and meeting controls reduce exposure to untrusted users, content, and applications.",
+      "business_impact": "Permissive Teams policies can create unauthorized communication, file-sharing, recording, and meeting access paths.",
+      "benchmark": [
+        {
+          "framework": "CIS",
+          "benchmark": "Microsoft 365 Foundations",
+          "version": "7.0.0",
+          "control": "8.5.4"
+        },
+        {
+          "framework": "NIST",
+          "benchmark": "Cybersecurity Framework",
+          "version": "2.0",
+          "control": "PR.AA"
+        }
+      ],
+      "evidence": {
+        "mock_dataset": {
+          "synthetic": true,
+          "sequence": 91
+        }
+      },
+      "affected_resources": [
+        "mock-resource-91"
+      ],
+      "observation": "The synthetic tenant value did not satisfy the expected condition.",
+      "recommendation": "Review effective policy assignments and test changes with representative collaboration scenarios.",
+      "remediation": "Disable PSTN lobby bypass in each effective meeting policy.",
+      "references": [
+        "https://learn.microsoft.com/microsoftteams/teams-powershell-overview"
+      ],
+      "timestamp": "2026-08-19T09:30:00Z"
+    }
+  ],
+  "summary": {
+    "total_checks": 97,
+    "pass_count": 77,
+    "fail_count": 12,
+    "warning_count": 0,
+    "not_applicable_count": 0,
+    "not_assessed_count": 8,
+    "error_count": 0,
+    "pass_percentage": 86.52,
+    "failure_percentage": 13.48,
+    "coverage_percentage": 91.75,
+    "severity_distribution": {
+      "Critical": 0,
+      "High": 9,
+      "Medium": 3,
+      "Low": 0,
+      "Informational": 0
+    }
+  },
+  "benchmark_results": {
+    "cis-m365-7.0.0": {
+      "version": "7.0.0",
+      "mapping_status": "implemented_97_control_pack"
+    },
+    "nist-csf-2.0": {
+      "version": "2.0",
+      "mapping_status": "implemented_97_control_pack"
+    }
+  }
+}
